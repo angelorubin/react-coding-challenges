@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_about.scss";
 import { useDarkMode } from "hooks/useDarkMode";
+import { Link } from "react-router-dom";
 
 function About() {
   const [darkMode, setDarkMode] = useDarkMode();
@@ -11,8 +12,10 @@ function About() {
     <div className={`app ${darkMode}`}>
       <div className="level">
         <div>
-          <h1 className="title">Dark Mode Challenge</h1>
+          <h1 className="title">Dark Mode Challenge - About Page</h1>
         </div>
+
+        <Link to="/">Go Home</Link>
 
         {/* --The button that should toggle dark mode-- */}
         <button
@@ -62,8 +65,8 @@ function About() {
 
       <section className="section">
         <div className="buttons level-right">
-          <a className="button is-primary">Save</a>
-          <a className="button is-link">Submit</a>
+          <button className="button is-primary">Save</button>
+          <button className="button is-link">Submit</button>
         </div>
       </section>
     </div>
