@@ -1,19 +1,25 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export const useDarkMode = () => {
   const [darkMode, setDarkMode] = useState("");
 
   useEffect(() => {
-    localStorage.setItem("darkMode", "");
+    if (localStorage.getItem("dark-mode") === "") {
+      setDarkMode(localStorage.getItem("dark-mode", "dark-mode"));
+    }
+
+    if (localStorage.getItem("dark-mode") === "dark-mode") {
+      setDarkMode(localStorage.getItem("dark-mode", ""));
+    }
   }, []);
 
   const toggle = () => {
-    if (darkMode === "") {
-      localStorage.setItem("darkMode", "dark-mode");
-      setDarkMode("dark-mode");
+    if (localStorage.getItem("dark-mode") === "") {
+      localStorage.setItem("dark-mode", "dark-mode");
+      setDarkMode(localStorage.getItem("dark-mode"));
     } else {
-      localStorage.setItem("darkMode", "");
-      setDarkMode("");
+      localStorage.setItem("dark-mode", "");
+      setDarkMode(localStorage.getItem("dark-mode"));
     }
   };
 

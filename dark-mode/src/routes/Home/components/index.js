@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_home.scss";
@@ -6,25 +6,24 @@ import { useDarkMode } from "hooks/useDarkMode";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const [darkMode, setDarkMode] = useDarkMode();
+  const [darkMode, toggle] = useDarkMode();
 
   return (
     <div className={`home ${darkMode}`}>
       <div className="level">
+        <Link to="/about">Go About</Link>
         <div>
           <h1 className="title">Dark Mode Challenge - Home Page</h1>
         </div>
 
-        <Link to="/about">Go About</Link>
-
         {/* --The button that should toggle dark mode-- */}
         <button
           className="home__dark-mode-btn icon level-right"
-          onClick={setDarkMode}
+          onClick={toggle}
         >
           <FontAwesomeIcon
-            icon={darkMode === "dark-mode" ? faSun : faMoon}
-            color={darkMode === "dark-mode" ? "#FFA500" : ""}
+            icon={darkMode ? faMoon : faSun}
+            color={darkMode ? "#FFA500" : ""}
           />
         </button>
       </div>
