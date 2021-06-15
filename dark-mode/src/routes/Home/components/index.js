@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_home.scss";
-import { useDarkMode } from "hooks/useDarkMode";
+import { useToggleTheme } from "hooks/useToggleTheme";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const [darkMode, toggle] = useDarkMode();
+  const [theme, toggle] = useToggleTheme();
+
+  useEffect(() => {
+    console.log("Home re-renderizado");
+  }, []);
 
   return (
-    <div className={`home ${darkMode}`}>
+    <div className={`home ${theme}`}>
       <div className="level">
         <Link to="/about">Go About</Link>
         <div>
@@ -22,8 +26,8 @@ function Home() {
           onClick={toggle}
         >
           <FontAwesomeIcon
-            icon={darkMode ? faMoon : faSun}
-            color={darkMode ? "#FFA500" : ""}
+            icon={theme ? faSun : faMoon}
+            color={theme ? "#FFA500" : ""}
           />
         </button>
       </div>
