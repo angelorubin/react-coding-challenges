@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_about.scss";
 import { useToggleTheme } from "hooks/useToogleTheme";
-import { Link } from "react-router-dom";
+import Navbar from "common/containers/Navbar";
 
 function Contacts() {
   const [theme, toggle] = useToggleTheme();
@@ -11,14 +11,9 @@ function Contacts() {
   return (
     <div className={`app ${theme}`}>
       <div className="level">
-        <Link to="/">Go Home</Link>
-        <div>
-          <h1 className="title">Dark Mode Challenge - Contacts Page</h1>
-        </div>
-
-        {/* --The button that should toggle dark mode-- */}
+        <Navbar />
         <button
-          className="app__dark-mode-btn icon level-right"
+          className="home__dark-mode-btn icon level-right"
           onClick={toggle}
         >
           <FontAwesomeIcon
@@ -26,6 +21,11 @@ function Contacts() {
             color={theme ? "#FFA500" : ""}
           />
         </button>
+      </div>
+      <div className="level">
+        <div>
+          <h1 className="title">Contacts Page</h1>
+        </div>
       </div>
 
       <div className="columns">

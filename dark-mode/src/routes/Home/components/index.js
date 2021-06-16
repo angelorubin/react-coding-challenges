@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_home.scss";
 import { useToggleTheme } from "hooks/useToogleTheme";
-import { Link } from "react-router-dom";
-import Nav from "components/nav";
-import NavItem from "components/nav/nav-item";
+import Navbar from "common/containers/Navbar";
 
 function Home() {
   const [theme, toggle] = useToggleTheme();
@@ -13,25 +11,7 @@ function Home() {
   return (
     <div className={`home ${theme}`}>
       <div className="level">
-        <Nav>
-          <NavItem>
-            <Link to="/">Home</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/about">About</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/contacts">Contacts</Link>
-          </NavItem>
-        </Nav>
-      </div>
-
-      <div className="level">
-        <div>
-          <h1 className="title">Dark Mode Challenge - Home Page</h1>
-        </div>
-
-        {/* --The button that should toggle dark mode-- */}
+        <Navbar />
         <button
           className="home__dark-mode-btn icon level-right"
           onClick={toggle}
@@ -41,6 +21,14 @@ function Home() {
             color={theme ? "#FFA500" : ""}
           />
         </button>
+      </div>
+
+      <div className="level">
+        <div>
+          <h1 className="title">Home Page</h1>
+        </div>
+
+        {/* --The button that should toggle dark mode-- */}
       </div>
 
       <div className="columns">

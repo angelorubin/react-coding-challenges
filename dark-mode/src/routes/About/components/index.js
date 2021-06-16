@@ -3,18 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_about.scss";
 import { useToggleTheme } from "hooks/useToogleTheme";
-import { Link } from "react-router-dom";
+import Navbar from "common/containers/Navbar";
 
 function About() {
   const [theme, toggle] = useToggleTheme();
   return (
     <div className={`app ${theme}`}>
       <div className="level">
-        <Link to="/">Go Home</Link>
-        <div>
-          <h1 className="title">Dark Mode Challenge - About Page</h1>
-        </div>
-
+        <Navbar />
         {/* --The button that should toggle dark mode-- */}
         <button
           className="app__dark-mode-btn icon level-right"
@@ -25,6 +21,12 @@ function About() {
             color={theme ? "#FFA500" : ""}
           />
         </button>
+      </div>
+
+      <div className="level">
+        <div>
+          <h1 className="title">About Page</h1>
+        </div>
       </div>
 
       <div className="columns">
