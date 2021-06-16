@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_home.scss";
-import { useToggleTheme } from "hooks/useToggleTheme";
+import { useToggleTheme } from "hooks/useToogleTheme";
 import { Link } from "react-router-dom";
 import Nav from "components/nav";
 import NavItem from "components/nav/nav-item";
