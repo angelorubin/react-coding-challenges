@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 function About() {
   const [theme, toggle] = useToggleTheme();
-
   return (
     <div className={`app ${theme}`}>
       <div className="level">
