@@ -2,16 +2,31 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_home.scss";
-import { useDarkMode } from "hooks/useDarkMode";
+import { useToggleTheme } from "hooks/useToogleTheme";
 import { Link } from "react-router-dom";
+import Nav from "components/nav";
+import NavItem from "components/nav/nav-item";
 
 function Home() {
-  const [darkMode, toggle] = useDarkMode();
+  const [theme, toggle] = useToggleTheme();
 
   return (
-    <div className={`home ${darkMode}`}>
+    <div className={`home ${theme}`}>
       <div className="level">
-        <Link to="/about">Go About</Link>
+        <Nav>
+          <NavItem>
+            <Link to="/">Home</Link>
+          </NavItem>
+          <NavItem>
+            <Link to="/about">About</Link>
+          </NavItem>
+          <NavItem>
+            <Link to="/contacts">Contacts</Link>
+          </NavItem>
+        </Nav>
+      </div>
+
+      <div className="level">
         <div>
           <h1 className="title">Dark Mode Challenge - Home Page</h1>
         </div>
@@ -22,8 +37,8 @@ function Home() {
           onClick={toggle}
         >
           <FontAwesomeIcon
-            icon={darkMode ? faMoon : faSun}
-            color={darkMode ? "#FFA500" : ""}
+            icon={theme ? faSun : faMoon}
+            color={theme ? "#FFA500" : ""}
           />
         </button>
       </div>

@@ -2,14 +2,14 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_about.scss";
-import { useDarkMode } from "hooks/useDarkMode";
+import { useToggleTheme } from "hooks/useToogleTheme";
 import { Link } from "react-router-dom";
 
 function About() {
-  const [darkMode, toggle] = useDarkMode();
+  const [theme, toggle] = useToggleTheme();
 
   return (
-    <div className={`app ${darkMode}`}>
+    <div className={`app ${theme}`}>
       <div className="level">
         <Link to="/">Go Home</Link>
         <div>
@@ -22,8 +22,8 @@ function About() {
           onClick={toggle}
         >
           <FontAwesomeIcon
-            icon={darkMode === "dark-mode" ? faSun : faMoon}
-            color={darkMode === "dark-mode" ? "#FFA500" : ""}
+            icon={theme ? faSun : faMoon}
+            color={theme ? "#FFA500" : ""}
           />
         </button>
       </div>
