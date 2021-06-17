@@ -1,20 +1,16 @@
 import axios from "axios";
-import config from "config";
+import { api } from "config";
 
-const { authURL, baseURL, clientId, clientSecret } = config.api;
-
-export const httpAuth = axios.create({
-  baseURL: authURL,
+export const http = axios.create({
+  baseURL: api.baseUrl,
   timeout: 3000,
-  params: {
-    grant_type: "client_credentials",
-  },
+  data: "grant_type=client_credentials",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/x-www-form-urlencoded",
   },
   auth: {
-    username: clientId,
-    password: clientSecret,
+    username: api.clientId,
+    password: api.clientSecret,
   },
 });
