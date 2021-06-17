@@ -1,5 +1,9 @@
 export const api = {
-  baseUrl: process.env.BASE_URL,
-  clientId: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
+  baseURL: process.env.REACT_APP_BASE_URL,
+  clientId: process.env.REACT_APP_CLIENT_ID,
+  clientSecret: process.env.REACT_APP_CLIENT_SECRET,
+  responseType: process.env.REACT_APP_RESPONSE_TYPE,
+  redirectUri: process.env.REACT_APP_REDIRECT_URI,
+  scope: process.env.REACT_APP_SCOPE,
+  code: process.env.REACT_APP_CODE,
 };

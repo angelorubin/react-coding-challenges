@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import DiscoverBlock from "./DiscoverBlock/components/DiscoverBlock";
 import "../styles/_discover.scss";
 import { http } from "api";
-// import http from "axios";
+import { SpotifyApiContext } from "react-spotify-api";
+import axios from "axios";
 
 const Discover = () => {
   const [state, setState] = useState({
@@ -12,12 +13,17 @@ const Discover = () => {
   });
 
   useEffect(() => {
-    http({
-      method: "post",
-      url: "/api/token",
-    })
-      .then((res) => console.log(res.data))
-      .catch((error) => console.log(error));
+    axios({
+      url: "https://accounts.spotify.com/api/token",
+      method: "POST",
+      params: {
+        client_id: process.env.REACT_APP_CLIENT_ID,
+        client_secret: process.env.REACT_APP_CLIENT_SECRET,
+        grant_type: "authorization_code",
+        code: "code",
+        redirect_uri: "http://localhost:3000",
+      },
+    }).then((res) => console.log(res.data));
   }, []);
 
   const { newReleases, playlists, categories } = state;
