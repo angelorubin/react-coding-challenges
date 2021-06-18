@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import DiscoverBlock from "./DiscoverBlock/components/DiscoverBlock";
 import "../styles/_discover.scss";
-import { http } from "api";
-import { SpotifyApiContext } from "react-spotify-api";
-import axios from "axios";
+// import { http } from "api";
+let SpotifyWebApi = require("spotify-web-api-js");
 
 const Discover = () => {
   const [state, setState] = useState({
@@ -13,17 +12,20 @@ const Discover = () => {
   });
 
   useEffect(() => {
-    axios({
-      url: "https://accounts.spotify.com/api/token",
-      method: "POST",
-      params: {
-        client_id: process.env.REACT_APP_CLIENT_ID,
-        client_secret: process.env.REACT_APP_CLIENT_SECRET,
-        grant_type: "authorization_code",
-        code: "code",
-        redirect_uri: "http://localhost:3000",
-      },
-    }).then((res) => console.log(res.data));
+    // http.get("/api/token").then((res) => console.log(res.data));
+
+    let spotifyApi = new SpotifyWebApi({
+      clientId: process.env.REACT_APP_CLIENT_ID,
+      clientSecret: process.env.REACT_APP_CLIENT_SECRET,
+      redirectUri: encodeURIComponent(process.env.REACT_APP_REDIRECT_URI),
+    });
+
+    // spotifyApi.setAccessToken(process.env.REACT_APP_CLIENT_ID);
+    console.log(spotifyApi);
+    spotifyApi.getArtistAlbums("43ZHCT0cAZBISjO8DG9PnE", function (err, data) {
+      if (err) console.error(err);
+      else console.log("Artist albums", data);
+    });
   }, []);
 
   const { newReleases, playlists, categories } = state;
